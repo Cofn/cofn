@@ -18,10 +18,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import RedirectView
+from cofn.apps.blog.views import home
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^$', 'cofn.apps.services.views.home_page'),
+    url(r'^$', home, name='home'),
     url(r'^services/', include('cofn.apps.services.urls')),
     url(r'^blog/', include('cofn.apps.blog.urls'))
     #url(r'^$', RedirectView.as_view(url='/cofn/apps/services/', permanent=True)),
