@@ -13,10 +13,15 @@
 
 <div class="container">
     <h1>First Blog</h1>
-    <h2>Title</h2>
-    <h3>Posted on date by author</h3>
-    <p>Body Text</p>
-
+    <hr />
+    {% for post in posts %}
+        <div class="post">
+        <h2>{{ post.title }}</h2>
+        <h3>Posted on {{ post.timestamp }} by {{ post.author }}</h3>
+        <p>{{ post.bodytext }}</p>
+        </div>
+        <hr />
+    {% endfor %}
 </div>
 
 </body>
