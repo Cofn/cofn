@@ -17,14 +17,21 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import RedirectView
+from django.contrib.auth import views as auth_views
+
 from cofn.apps.blog.views import home
+from cofn.apps.authentication import views as signup_view
+from cofn.apps.core import views as core_view
+
 
 urlpatterns = [
+    url(r'^$', core_view.home, name='home'),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
+    url(r'^signup/$', signup_view.signup, name='signup'),
     url(r'^admin/', admin.site.urls),
     #url(r'^$', 'cofn.apps.services.views.home_page'),
-    url(r'^$', home, name='home'),
-    url(r'^services/', include('cofn.apps.services.urls')),
+    #url(r'^services/', include('cofn.apps.services.urls')),
     url(r'^blog/', include('cofn.apps.blog.urls'))
     #url(r'^$', RedirectView.as_view(url='/cofn/apps/services/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
