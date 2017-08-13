@@ -12,7 +12,7 @@ from .models import Post
 
 @login_required
 def home(request):
-    entries = Post.objects.all()[:10]
+    entries = reversed(Post.objects.all()[:10])
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():

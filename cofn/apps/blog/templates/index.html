@@ -30,7 +30,7 @@
     {% for post in posts %}
         <div class="post">
         <h2>{{ post.title }}</h2>
-        <h3>Posted on {{ post.timestamp }} by {{ post.author }}</h3>
+        <h5>{{ post.timestamp }} | {{ post.author }}</h5>
         <p>{{ post.body_text }}</p>
         </div>
         <hr />
