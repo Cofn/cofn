@@ -21,17 +21,27 @@ from django.contrib.auth import views as auth_views
 
 from cofn.apps.blog.views import home
 from cofn.apps.authentication import views as signup_view
-from cofn.apps.core import views as core_view
+from cofn.apps.core import views as core_views
 
 
 urlpatterns = [
-    url(r'^$', core_view.home, name='home'),
+    url(r'^$', core_views.home, name='home'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', signup_view.signup, name='signup'),
     url(r'^admin/', admin.site.urls),
     #url(r'^$', 'cofn.apps.services.views.home_page'),
     #url(r'^services/', include('cofn.apps.services.urls')),
-    url(r'^blog/', include('cofn.apps.blog.urls'))
+    url(r'^blog/', include('cofn.apps.blog.urls')),
+    url(r'^settings/$', core_views.settings, name='settings'),
+    url(r'^settings/picture/$', core_views.picture, name='picture'),
+    url(r'^settings/upload_picture/$', core_views.upload_picture,
+        name='upload_picture'),
+    url(r'^settings/save_uploaded_picture/$', core_views.save_uploaded_picture,
+        name='save_uploaded_picture'),
+    url(r'^settings/password/$', core_views.password, name='password'),
+    url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     #url(r'^$', RedirectView.as_view(url='/cofn/apps/services/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

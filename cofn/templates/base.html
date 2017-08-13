@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load staticfiles i18n %}<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -35,6 +35,7 @@
    }
   </style>
   <title>{% block title %} Cofn {% endblock %}</title>
+    {% block head %}{% endblock %}
 </head>
 <body>
   <nav class="navbar navbar-inverse">
@@ -54,6 +55,7 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+            <li><a href="{%  url 'settings' %}"><span class="glyphicon glyphicon-cog"></span>Account Settings</a> </li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           {% elif request.get_full_path == '/signup/' %}
@@ -74,6 +76,8 @@
     <main>
     {% block content %}
     {% endblock %}
+    {% block main %}
+    {% endblock main %}
     </main>
     <hr>
     </div>
