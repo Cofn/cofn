@@ -7,7 +7,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from cofn.apps.blog.models import Post
-from PIL import  Image
+from PIL import Image
 from .forms import ProfileForm, ChangePasswordForm
 from django.conf import settings as django_settings
 from django.contrib.auth import update_session_auth_hash
