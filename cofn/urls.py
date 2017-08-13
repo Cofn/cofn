@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^settings/save_uploaded_picture/$', core_views.save_uploaded_picture,
         name='save_uploaded_picture'),
     url(r'^settings/password/$', core_views.password, name='password'),
-    url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
+    url(r'^(?P<username>[^/]+)$', core_views.profile, name='profile'),
     #url(r'^$', RedirectView.as_view(url='/cofn/apps/services/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG is True:
