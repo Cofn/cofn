@@ -1,29 +1,40 @@
-<!DOCTYPE html>
+{%  extends 'base.html' %}
 
-<html lang="en">
+{% block content %}
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/style.css">
-    <link href="images/favicon.ico" rel="shortcut icon">
-    <title>First Blog</title>
-</head>
-
-<body>
+<div>
+    <h4>Post a new blog</h4>
+    <div>
+        <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Post</button>
+  </form>
+    </div>
+</div>
 
 <div class="container">
-    <h1>First Blog</h1>
+    <h1>Blog</h1>
     <hr />
     {% for post in posts %}
         <div class="post">
         <h2>{{ post.title }}</h2>
         <h3>Posted on {{ post.timestamp }} by {{ post.author }}</h3>
-        <p>{{ post.bodytext }}</p>
+        <p>{{ post.body_text }}</p>
         </div>
         <hr />
     {% endfor %}
 </div>
 
-</body>
-
-</html>
+{% endblock %}
