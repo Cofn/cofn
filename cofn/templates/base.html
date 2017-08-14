@@ -85,5 +85,16 @@
     </div>
   </div>
   </div>
+  <!-- Veeps - Insert the code right before your closing </body> tag. -->
+<script>
+(function(d,s,id){
+if (!d.getElementById(id)){
+ var js = d.createElement(s), ljs=d.getElementsByTagName(s)[0];
+ js.async = true; js.id = id;
+ js.src = '//static.veeps.io/veeps.js';
+ js.onload = function(){Veeps.Finder({veepsChat:false,players:['yt']});}
+ ljs.parentNode.insertBefore(js, ljs);
+}})(document,'script','veeps-js');
+</script>
 </body>
 </html>
